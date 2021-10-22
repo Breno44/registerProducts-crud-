@@ -5,7 +5,7 @@ export default function home() {
       <p class="lead">Este é seu sistema utilize as barras de navegação para acessar as páginas</p>
       <hr class="my-4" />
       <p class="lead">
-        <a class="btn btn-primary btn-lg" href="/" role="button">
+        <a class="btn btn-primary btn-lg" href="#/cadastro-produtos" role="button">
           Cadastrar
         </a>
       </p>
