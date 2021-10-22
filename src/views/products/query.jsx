@@ -1,7 +1,8 @@
 import React from "react";
 import ProductService from "../../app/productService";
+import { withRouter } from "react-router-dom";
 
-export default class Query extends React.Component {
+class Query extends React.Component {
   state = {
     products: [],
   };
@@ -15,6 +16,10 @@ export default class Query extends React.Component {
     const products = this.service.getProducts();
     this.setState({ products });
   }
+
+  initEdit = (sku) => {
+    this.props.history.push(`/cadastro-produtos/${sku}`);
+  };
 
   render() {
     return (
@@ -40,7 +45,12 @@ export default class Query extends React.Component {
                     <td>{product.sku}</td>
                     <td>{product.preco}</td>
                     <td>{product.fornecedor}</td>
-                    <td></td>
+                    <td>
+                      <button onClick={() => this.initEdit(product.sku)} className="btn btn-primary">
+                        Editar
+                      </button>
+                      <button className="btn btn-danger">Remover</button>
+                    </td>
                   </tr>
                 );
               })}
@@ -51,3 +61,5 @@ export default class Query extends React.Component {
     );
   }
 }
+
+export default withRouter(Query);
