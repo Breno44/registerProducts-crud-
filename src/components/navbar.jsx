@@ -17,7 +17,7 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarColor01">
+        <div className="" id="navbarColor01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <a className="nav-link active" href="/">
