@@ -1,4 +1,5 @@
 import React from "react";
+import ProductService from "../../app/productService";
 
 const initialState = {
   nome: "",
@@ -11,6 +12,11 @@ const initialState = {
 export default class RegistrationProduct extends React.Component {
   state = initialState;
 
+  constructor() {
+    super();
+    this.service = new ProductService();
+  }
+
   onChange = (e) => {
     const valor = e.target.value;
     const nomeDoCampo = e.target.name;
@@ -21,7 +27,16 @@ export default class RegistrationProduct extends React.Component {
   };
 
   onSubmit = (e) => {
-    console.log(this.state);
+    const product = {
+      nome: this.state.nome,
+      sku: this.state.sku,
+      descricao: this.state.descricao,
+      preco: this.state.preco,
+      fornecedor: this.state.fornecedor,
+    };
+    this.service.save(product);
+    this.cleanFields();
+    console.log("Salvo com successo");
   };
 
   cleanFields = () => {
