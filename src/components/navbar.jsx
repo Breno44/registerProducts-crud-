@@ -2,7 +2,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="#/">
           Produtos
         </a>
         <button
@@ -20,7 +20,7 @@ export default function Navbar() {
         <div className="" id="navbarColor01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="/">
+              <a className="nav-link active" href="#/">
                 Home
                 <span className="visually-hidden">(current)</span>
               </a>
@@ -31,7 +31,7 @@ export default function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <a className="nav-link" href="#/">
                 Consulta
               </a>
             </li>
