@@ -1,9 +1,20 @@
 import React from "react";
+import ProductService from "../../app/productService";
 
 export default class Query extends React.Component {
   state = {
     products: [],
   };
+
+  constructor() {
+    super();
+    this.service = new ProductService();
+  }
+
+  componentDidMount() {
+    const products = this.service.getProducts();
+    this.setState({ products });
+  }
 
   render() {
     return (
@@ -25,7 +36,7 @@ export default class Query extends React.Component {
               {this.state.products.map((product, key) => {
                 return (
                   <tr key={key}>
-                    <td>{product.name}</td>
+                    <td>{product.nome}</td>
                     <td>{product.sku}</td>
                     <td>{product.preco}</td>
                     <td>{product.fornecedor}</td>

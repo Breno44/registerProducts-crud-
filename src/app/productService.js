@@ -16,6 +16,11 @@ export default class ProductService {
     if (errors.length) throw new ErrorValidation(errors);
   };
 
+  getProducts = () => {
+    const products = localStorage.getItem(PRODUCTS);
+    return JSON.parse(products);
+  };
+
   save = (product) => {
     this.validate(product);
 
