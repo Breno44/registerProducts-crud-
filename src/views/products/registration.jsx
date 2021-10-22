@@ -1,5 +1,6 @@
 import React from "react";
 import ProductService from "../../app/productService";
+import { withRouter } from "react-router-dom";
 
 const initialState = {
   nome: "",
@@ -11,7 +12,7 @@ const initialState = {
   errors: [],
 };
 
-export default class RegistrationProduct extends React.Component {
+class RegistrationProduct extends React.Component {
   state = initialState;
 
   constructor() {
@@ -45,6 +46,18 @@ export default class RegistrationProduct extends React.Component {
       this.setState({ errors: errors });
     }
   };
+
+  componentDidMount() {
+    const sku = this.props.match.params.sku;
+
+    if (sku) {
+      const result = this.service.getProducts().filter((product) => product.sku === sku);
+      if (result.length === 1) {
+        const productFound = result[0];
+        this.setState({ ...productFound });
+      }
+    }
+  }
 
   cleanFields = () => {
     this.setState(initialState);
@@ -160,3 +173,5 @@ export default class RegistrationProduct extends React.Component {
     );
   }
 }
+
+export default withRouter(RegistrationProduct);
