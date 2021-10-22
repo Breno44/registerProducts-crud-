@@ -1,11 +1,11 @@
 import Navbar from "./components/navbar";
-import Home from "./views/home";
+import Routes from "./routes/routes";
 
 export default function App() {
   return (
     <>
       <Navbar />
-      <Home />
+      <Routes />
     </>
   );
 }
