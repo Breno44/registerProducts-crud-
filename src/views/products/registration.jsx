@@ -8,6 +8,7 @@ const initialState = {
   preco: 0,
   fornecedor: "",
   sucesso: false,
+  errors: [],
 };
 
 export default class RegistrationProduct extends React.Component {
@@ -35,9 +36,14 @@ export default class RegistrationProduct extends React.Component {
       preco: this.state.preco,
       fornecedor: this.state.fornecedor,
     };
-    this.service.save(product);
-    this.cleanFields();
-    this.setState({ sucesso: true });
+    try {
+      this.service.save(product);
+      this.cleanFields();
+      this.setState({ sucesso: true });
+    } catch (error) {
+      const errors = error.errors;
+      this.setState({ errors: errors });
+    }
   };
 
   cleanFields = () => {
@@ -56,6 +62,15 @@ export default class RegistrationProduct extends React.Component {
                 <strong>Perfeito!</strong> Produto Cadastrado Com Sucesso
               </div>
             )}
+
+            {this.state.errors.length > 0 &&
+              this.state.errors.map((error) => (
+                <div class="alert alert-dismissible alert-danger">
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  <strong>Erro</strong>
+                  {error}
+                </div>
+              ))}
 
             <div className="row">
               <div className="col-md-6">
