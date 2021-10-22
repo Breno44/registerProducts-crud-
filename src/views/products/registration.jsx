@@ -7,6 +7,7 @@ const initialState = {
   descricao: "",
   preco: 0,
   fornecedor: "",
+  sucesso: false,
 };
 
 export default class RegistrationProduct extends React.Component {
@@ -36,7 +37,7 @@ export default class RegistrationProduct extends React.Component {
     };
     this.service.save(product);
     this.cleanFields();
-    console.log("Salvo com successo");
+    this.setState({ sucesso: true });
   };
 
   cleanFields = () => {
@@ -49,6 +50,13 @@ export default class RegistrationProduct extends React.Component {
         <div className="card">
           <div className="card-header">Cadastro de produto</div>
           <div className="card-body">
+            {this.state.sucesso && (
+              <div class="alert alert-dismissible alert-success">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Perfeito!</strong> Produto Cadastrado Com Sucesso
+              </div>
+            )}
+
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
