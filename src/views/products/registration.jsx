@@ -10,6 +10,7 @@ const initialState = {
   fornecedor: "",
   sucesso: false,
   errors: [],
+  update: false,
 };
 
 class RegistrationProduct extends React.Component {
@@ -54,7 +55,7 @@ class RegistrationProduct extends React.Component {
       const result = this.service.getProducts().filter((product) => product.sku === sku);
       if (result.length === 1) {
         const productFound = result[0];
-        this.setState({ ...productFound });
+        this.setState({ ...productFound, update: true });
       }
     }
   }
@@ -67,7 +68,7 @@ class RegistrationProduct extends React.Component {
     return (
       <div className="container">
         <div className="card">
-          <div className="card-header">Cadastro de produto</div>
+          <div className="card-header">{this.state.update ? "Atualização " : "Cadastro "} de produto</div>
           <div className="card-body">
             {this.state.sucesso && (
               <div class="alert alert-dismissible alert-success">
@@ -105,6 +106,7 @@ class RegistrationProduct extends React.Component {
                   <input
                     type="text"
                     name="sku"
+                    disabled={this.props.update}
                     value={this.state.sku}
                     className="form-control"
                     onChange={this.onChange}
@@ -158,7 +160,7 @@ class RegistrationProduct extends React.Component {
             <div className="row mt-2">
               <div className="col-md-1">
                 <button className="btn btn-success" onClick={this.onSubmit}>
-                  Salvar
+                  {this.state.update ? "Atualizar " : "Salvar "}
                 </button>
               </div>
               <div className="col-md-1">
