@@ -10,7 +10,7 @@ export default () => {
     <HashRouter>
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route exact path="/cadastro-produtos:sku?" component={RegistrationProduct} />
+        <Route exact path="/cadastro-produtos/:sku?" component={RegistrationProduct} />
         <Route exact path="/consultar-produtos" component={queryProducts} />
       </Switch>
     </HashRouter>

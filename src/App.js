@@ -1,3 +1,4 @@
+import React from "react";
 import Navbar from "./components/navbar";
 import Routes from "./routes/routes";
 import { HashRouter } from "react-router-dom";
