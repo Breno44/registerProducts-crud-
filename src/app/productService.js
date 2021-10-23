@@ -33,6 +33,16 @@ export default class ProductService {
     return index;
   };
 
+  delete = (sku) => {
+    const index = this.getIndex(sku);
+    if (index !== null) {
+      const products = this.getProducts();
+      products.splice(index, 1);
+      localStorage.setItem(PRODUCTS, JSON.stringify(products));
+      return products;
+    }
+  };
+
   save = (product) => {
     this.validate(product);
 
