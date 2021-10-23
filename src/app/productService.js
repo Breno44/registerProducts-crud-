@@ -18,6 +18,7 @@ export default class ProductService {
 
   getProducts = () => {
     const products = localStorage.getItem(PRODUCTS);
+    if (!products) return [];
     return JSON.parse(products);
   };
 
