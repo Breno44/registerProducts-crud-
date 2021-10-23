@@ -21,6 +21,17 @@ export default class ProductService {
     return JSON.parse(products);
   };
 
+  getIndex = (sku) => {
+    let index = null;
+    this.getProducts().forEach((product, i) => {
+      if (product.sku === sku) {
+        index = i;
+      }
+    });
+
+    return index;
+  };
+
   save = (product) => {
     this.validate(product);
 
@@ -30,6 +41,13 @@ export default class ProductService {
       products = [];
     } else {
       products = JSON.parse(products);
+    }
+
+    const index = this.getProducts(product.sku);
+    if (index === null) {
+      products.push(product);
+    } else {
+      products[index] = product;
     }
 
     products.push(product);
