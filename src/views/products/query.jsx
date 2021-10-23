@@ -21,6 +21,11 @@ class Query extends React.Component {
     this.props.history.push(`/cadastro-produtos/${sku}`);
   };
 
+  delete = (sku) => {
+    const products = this.service.delete(sku);
+    this.setState({ products });
+  };
+
   render() {
     return (
       <div className="container">
@@ -49,7 +54,9 @@ class Query extends React.Component {
                       <button onClick={() => this.initEdit(product.sku)} className="btn btn-primary">
                         Editar
                       </button>
-                      <button className="btn btn-danger">Remover</button>
+                      <button onClick={() => this.delete(product.sku)} className="btn btn-danger">
+                        Remover
+                      </button>
                     </td>
                   </tr>
                 );
